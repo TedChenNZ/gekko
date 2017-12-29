@@ -59,7 +59,7 @@ Trader.prototype.processError = function(funcName, error) {
 
 Trader.prototype.handleResponse = function(funcName, callback) {
   return (error, body) => {
-    if(!_.isEmpty(body.code)) {
+    if(body !== undefined && !_.isEmpty(body.code)) {
       error = new Error(`Error ${body.code}: ${body.msg}`);
     }
 
@@ -892,7 +892,7 @@ Trader.getCapabilities = function() {
       },
       {
         pair: ['ETH', 'OMG'],
-        minimalOrder: { amount: 0.01, unit: 'asset' },
+        minimalOrder: { amount: 1, unit: 'asset' },
         precision: 0.000001,
       },
       {
